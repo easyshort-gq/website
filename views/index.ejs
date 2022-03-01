@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>easyshort.gq</title>
+    <meta name="description" content="Simple, easy and free URL shortener. Connected to a Discord bot to quickly shorten as many links as you want.">
+    <meta name="author" content="easyshort.gq">
+    <meta name="color" content="#04347c">
+    <meta name="og:url" content="https://discord.com/api/oauth2/authorize?client_id=947875954586435634&permissions=1024&scope=bot%20applications.commands">
+    <meta name="theme-color" content="#1766a0">
+    <meta name="og:image" content="https://cdn-icons-png.flaticon.com/512/1041/1041916.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3214/3214679.png" type="image/x-icon"/>
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/3214/3214679.png" type="image/x-icon"/>
+</head>
+<body oncontextmenu="return false">
+    <img src="https://cdn-icons-png.flaticon.com/512/3214/3214679.png"><h1>easyshort.gq</h1><h2>Simple, easy and free URL shortener.</h2>
+    <center>
+    <button onclick="botInvite()"><b>Invite the Discord Bot</b></button><br>
+    <button style="margin-top: 4em;" onclick="support()"><b>Join the Support Server</b></button>
+    </center>
+    <footer>
+        <center>
+        <table>
+            <td style="border-left: none;">
+                <h3>Credits:</h3>
+                <ul>
+                    <li>Created by <a onclick="github()">Alessandro Baio</a></li>
+                    <li><a onclick="flaticon()">Logo created by Freepik - Flaticon</a></li>
+                </ul>
+            </td>
+            <td>
+                <h3>Stats:</h3>
+                <ul>
+                    <li><%= linkaccor %> shortened links</li>
+                    <li><%= siteacc %> website access</li>
+                </ul>
+            </td>
+            <td>
+                <h3>Legals:</h3>
+                <ul>
+                    <li onclick="termss()">Terms of Service</li>
+                    <li onclick="privacy()">Privacy Policy</li>
+                </ul>
+            </td>
+        </table>
+        </center>
+    </footer>
+</body>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Alatsi&display=swap');
+    body {
+        user-select: none;
+        font-family: 'Alatsi', sans-serif;
+        background-color: #d7f1fa;
+    }
+    button {
+        width: 17em;
+        height: 3em;
+        background-color: lightblue;
+        border-radius: 100px;
+        margin-top: 7em;
+        border: 0.2em solid blue;
+        text-decoration: solid;
+        font-size: 1em;
+        transition-duration: 0.4s;
+        -webkit-transition-duration: 0.4s;
+    }
+    button:hover {
+        transform: scale(110%);
+    }
+    img {
+        float: left;
+        width: 3.5em;
+        height: 3.5em;
+        margin: 0.5em;
+        margin-top: 1em;
+        margin-right: 1.5em;
+    }
+    h1 {
+        margin-top: 0em;
+        font-size: 3em;
+        margin-bottom: 0em;
+    }
+    h2 {
+        margin-left: 6em;
+        margin-top: 0em;
+        font-size: 1em;
+    }
+    footer {
+        position: fixed;
+        bottom: 0;
+        background-color: aquamarine;
+        width: 100%;
+        left: 0;
+        padding: 1em;
+    }
+    td {
+        width: 20em;
+        border-left: 1px solid black;
+        padding-left: 3em;
+    }
+    @media only screen and (max-width: 500px) {
+        td {
+            display: inline-block;
+            border: none;
+        }
+        button {
+            margin-top: 10em;
+        }
+    }
+</style>
+<script>
+    function botInvite() {
+        window.open("https://discord.com/api/oauth2/authorize?client_id=947875954586435634&permissions=1024&scope=bot%20applications.commands", "__blank")
+    }
+    function support() {
+        window.open("https://discord.gg/X4nGGPvJJY", "__blank")
+    }
+    function github() {
+        window.open("https://github.com/ale-006", "__blank")
+    }
+    function flaticon() {
+        window.open("https://www.flaticon.com/free-icons/url", "__blank")
+    }
+    function termss() {
+        window.open("/terms")
+    }
+    function privacy() {
+        window.open("/privacy")
+    }
+</script>
+</html>

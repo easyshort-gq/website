@@ -1,0 +1,123 @@
+<%- include('head', { title: 'easyshort.gq [SHORT]' }) -%>
+
+<body>
+    <img src="https://cdn-icons-png.flaticon.com/512/3214/3214679.png"><h1>easyshort.gq</h1><h2>Simple, easy and free URL shortener.</h2>
+    <form method="post" action="/createurl">
+        <label style="margin-left: 0;" for="long">Long URL:</label><input autocomplete="off" oninput="scriviLong()" type="url" id="long" name="long"><br>
+        <label style="margin-left: 1.4em;" for="short">Name:</label><input autocomplete="off" oninput="scriviShort()" type="text" id="short" name="short"><br>
+        <label style="margin-left: 0.55em;" for="prevshort">Preview:</label><a id="prevshort" target="__blank">easyshort.gq/example</a><br>
+        <button>Short</button>
+    </form>
+    <% if(errors) { %>
+        <p style="color: red;"><%= errors %></p>
+    <% } %>
+    <% if(success) { %>
+        <p style="color: green;">Your URL was successfully created!</p>
+    <% } %>
+</body>
+<script>
+    function scriviLong() {
+        document.getElementById("prevshort").href = document.getElementById("long").value
+    }
+    function scriviShort() {
+        document.getElementById("prevshort").innerHTML = "easyshort.gq/" + document.getElementById("short").value
+    }
+</script>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Alatsi&display=swap');
+    body {
+        user-select: none;
+        font-family: 'Alatsi', sans-serif;
+        background-color: #d7f1fa;
+    }
+    button {
+        margin-top: 2em;
+        margin-left: 1em;
+        width: 10em;
+        height: 3em;
+        background-color: lightblue;
+        border-radius: 100px;
+        border: 0.2em solid blue;
+        text-decoration: solid;
+        font-size: 1em;
+        transition-duration: 0.4s;
+        -webkit-transition-duration: 0.4s;
+    }
+    button:hover {
+        transform: scale(110%);
+    }
+    img {
+        float: left;
+        width: 3.5em;
+        height: 3.5em;
+        margin: 0.5em;
+        margin-top: 1em;
+        margin-right: 1.5em;
+    }
+    label {
+        margin-right: 1em;
+        font-size: 1.5em;
+    }
+    input {
+        border: 0.15em solid blue;
+        padding: 0.7em;
+        border-radius: 100px;
+        height: 1.5em;
+        width: 15em;
+        margin-bottom: 1em;
+    }
+    input:focus {
+        outline: none;
+    }
+    h1 {
+        margin-top: 0em;
+        font-size: 3em;
+        margin-bottom: 0em;
+    }
+    h2 {
+        margin-left: 6em;
+        margin-top: 0em;
+        font-size: 1em;
+        margin-bottom: 5em;
+    }
+    .prev {
+        cursor: default;
+        font-size: 1.5em;
+        margin-right: 0.5em;
+    }
+    a, a:hover, a:focus, a:active {
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+    }
+    #prevshort:hover {
+        color: blue;
+    }
+    #prevlong:hover {
+        color: blue;
+    }
+    @media screen and (max-width: 500px) {
+        label {
+            font-size: 1em;
+        }
+        input {
+            width: 10em;
+            height: 1em;
+        }
+        h1 {
+            font-size: 2em;
+        }
+        h2 {
+            font-size: 0.5em;
+        }
+        img {
+            width: 2.5em;
+            height: 2.5em;
+        }
+        button {
+            height: 2em;
+            width: 8em;
+        }
+    }
+</style>

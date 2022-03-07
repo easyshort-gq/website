@@ -1,0 +1,26 @@
+<%- include('head', { title: 'easyshort.gq [DB]' }) -%>
+
+<body>
+    <h1>Database (v <%= dbv %>)</h1>
+    <h2>Stats:</h2>
+    <ul>
+        <li><b>Website visits:</b> <%= webvis %></li>
+        <li><b>Shortened links:</b> <%= shl %></li>
+        <li><b>Executed commands:</b> <%= ecmd %></li>
+    </ul>
+    <h2>Bot Server:</h2>
+    <ol>
+        <% servers.forEach((h)=> { %>
+            <li><%= h %></li>
+        <% }) %>
+    </ol>
+    <h2>Shortened Links:</h2>
+    <ul>
+        <% links.forEach((i)=> { %>
+            <li>
+                <a>"<%= i.ID %>" → <%= i.data %></a>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>

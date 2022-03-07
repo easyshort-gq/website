@@ -4,7 +4,7 @@ const client = new Discord.Client({
 });
 const db = require("quick.db")
 const {Webhook} = require("simple-discord-webhooks")
-const webhook = new Webhook("https://discord.com/api/webhooks/947913082380890182/tdjeiuFlfhhju4JhxBy4FSqzNoXpFgAKmqZSTidqjheSjvkP8fxK46tkBkdrdlySyapV")
+const webhook = new Webhook("https://discord.com/api/webhooks/950353789653757973/WiNaS1KajVng8afpdWzdrL5hi2LnthgBitMrhXmeZoaF__Wz37Cdzq7KBP3J2eXwmXeA")
 
 module.exports = {
     data: {

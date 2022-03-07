@@ -1,26 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy</title>
-    <meta name="description" content="Simple, easy and free URL shortener. Connected to a Discord bot to quickly shorten as many links as you want.">
-    <meta name="author" content="easyshort.gq">
-    <meta name="color" content="#04347c">
-    <meta name="og:url" content="https://discord.com/api/oauth2/authorize?client_id=947875954586435634&permissions=1024&scope=bot%20applications.commands">
-    <meta name="theme-color" content="#1766a0">
-    <meta name="og:image" content="https://cdn-icons-png.flaticon.com/512/1041/1041916.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3214/3214679.png" type="image/x-icon"/>
-    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/3214/3214679.png" type="image/x-icon"/>
-</head>
-<body oncontextmenu="return false">
+<%- include('head', { title: 'easyshort.gq [PRIVACY]' }) -%>
+
+<body>
     <img src="https://cdn-icons-png.flaticon.com/512/3214/3214679.png"><h1 onclick="home()">easyshort.gq</h1><h2>Simple, easy and free URL shortener.</h2>
     <p style="margin-top: 2em"><span class="title1"><b>Privacy Policy</b></span></p>
     <p><span class="title2">What can we see:</span></p>
     <ol>
+        <li>Your IP Address</li>
+        <li>Your Discord account informations</li>
         <li>All links that are shortened with our tool</li>
         <li>How many access to the website are made</li>
         <li>How many server is our Discord bot in</li>
@@ -28,6 +14,7 @@
     <p><span class="title2">What can we do:</span></p>
     <ol>
         <li>We can remove any links that are illegal, racist or in any way deemed inappropriate</li>
+        <li>We can ban you from this service using your IP address or your Discord ID</li>
     </ol>
 </body>
 <style>

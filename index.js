@@ -1,128 +1,109 @@
-const express = require('express')
-const app = express()
+const app = require('express')()
 const ejs = require('ejs')
-const db = require("quick.db")
 const bodyParser = require("body-parser")
-const validUrl = require("valid-url")
 app.set("view engine", "ejs")
-const {Webhook} = require("simple-discord-webhooks")
-const webhook = new Webhook("https://discord.com/api/webhooks/950353935888166942/kiN0QJ7pMO1fHFkKQXcHciRp09MOLqYzIR7iBVXXBopm0icy1qNM-sKHFReW-Y7vuO4v")
 app.use(bodyParser.urlencoded({extended: false}))
+const { createClient } = require("@supabase/supabase-js")
+const { WebhookClient, MessageEmbed } = require("discord.js")
+const wh = new WebhookClient({ url: "https://discord.com/api/webhooks/950353789653757973/WiNaS1KajVng8afpdWzdrL5hi2LnthgBitMrhXmeZoaF__Wz37Cdzq7KBP3J2eXwmXeA" })
+
+const supabase = createClient("https://zlrybotjnovnzmdexvxp.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpscnlib3Rqbm92bnptZGV4dnhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDc3MTUxMDYsImV4cCI6MTk2MzI5MTEwNn0.8hjsacCgg3NdTCwZsmGRU6PjeEDC6k05N8VD0nmTWco")
+
+async function shortURL(l,s) {
+    let { data, error } = await
+        supabase
+            .from("easyshort")
+            .insert([{ code: s, url: l, clicks: 0}])
+    return data
+}
 
 app.enable("trust proxy")
 
 app.listen(3000, () => {
     console.log("http://localhost:3000")
     console.log("ejs @ " + ejs.VERSION)
-    console.log(db.all())
 })
 
 app.get("/", (req, res) => {
     res.render("index", {
-        linkaccor: db.all().filter(a => a.ID != "website_access" && a.ID != "executed_cmd").length,
-        siteacc: db.get("website_access")
+        notFound: false,
+        success: false,
+        errors: false
     })
-})
-app.get("/privacy", (req, res) => {
-    res.render("privacy")
-})
-app.get("/db", (req, res) => {
-    res.render("access-db")
-})
-app.get("/terms", (req, res) => {
-    res.render("terms")
-})
-app.get("/short", (req, res) => {
-    res.render("short", {
-        success: null,
-        errors: null
-    })
-})
-app.get("*", (req, res) => {
-    let x = req.path
-    if(x == "/privacy" || x == "/terms" || x == "/linklist" || x == "/db") return;
-    let linkCode = x.substr(1)
-    db.add("website_access", 1)
-    if(db.has(linkCode)) {
-        res.redirect(db.get(linkCode))
-    }
-    else {
-        res.render("notFound")
-    }
 })
 
-app.post("/opendb", function(req, res) {
-    if(req.body.psw == "gianni") {
-        res.render("db", {
-            links: db.all().filter(a => a.ID != "website_access" && a.ID != "executed_cmd"),
-            dbv: db.version,
-            servers: client.guilds.cache.map(g => g.name + " → " + g.memberCount + " members"),
-            webvis: db.get("website_access"),
-            shl: db.all().filter(a => a.ID != "website_access" && a.ID != "executed_cmd").length,
-            ecmd: db.get("executed_cmd")
-        })
+app.get("/about", (req, res) => {
+    res.render("about")
+})
+
+app.get("/report", (req, res) => {
+    res.render("report", {
+        success: false,
+        errors: false
+    })
+})
+
+
+
+app.get("*", async (req, res) => {
+    let x = req.path
+    if(x == "/about" || x == "/report") return;
+    let linkCode = x.substr(1)
+    let data = await supabase.from("easyshort").select("url, code, clicks").eq("code", linkCode)
+    if(data.data.length) {
+        res.redirect(data.data[0].url)
+        await supabase.from("easyshort").update({ "clicks": data.data[0].clicks +1 }).match({ "code": linkCode})
     }
     else {
-        res.send("Incorrect password!")
+        res.render("index", {
+            notFound: true,
+            success: false,
+            errors: false
+        })
     }
 })
 
 app.post("/createurl", function(req, res) {
     let lungo = req.body.long
-    let corto = req.body.short
-    let ers = []
-    if(!lungo || !corto) {
-        res.render("short", {
-            errors: "Please fill in all fields!",
-            success: null
-        })
+    let corto = ""
+    let chars = "abcdefghijklmnopqrstuvwxyz1234567890"
+    for(let i = 0;i<5;i++) {
+        corto += chars.charAt(Math.floor(Math.random() * chars.length))
     }
-    else if(db.has(corto)) {
-        res.render("short", {
-            errors: "This URL name was already taken. Try another...",
-            success: null
+    if(!lungo) {
+        res.render("index", {
+            notFound: false,
+            errors: true,
+            success: false
         })
     }
     else {
-        db.set(corto, lungo)
-        res.render("short", {
-            success: true,
-            errors: null
+        shortURL(lungo, corto)
+        res.render("index", {
+            notFound: false,
+            success: [corto, lungo],
+            errors: false
         })
-        webhook.send("🌐 [" + corto + "](<" + lungo + ">)\n\n__IP Address:__ " + req.ip)
     }
 })
 
+app.post("/reporturl", (req, res) => {
+    let url = req.body.url
+    let motivo = req.body.motivo
 
-const { Client, Collection, Intents} = require('discord.js')
-const client =  new Client({ intents: [Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILDS]});
-const fs = require('fs')
-client.commands = new Collection();
-const config = require("./config.json")
+    let embed = new MessageEmbed()
+    .setAuthor("easyshort.gq", "https://cdn-icons-png.flaticon.com/512/3214/3214679.png", "https://easyshort.gq")
+    .setDescription("**__URL:__** ```" + url + "```\n**__MOTIVO:__** ```" + motivo + "```")
+    .setColor("BLUE")
+    wh.send({
+        content: "**NEW REPORT FROM IP:** " + req.ip,
+        username: "",
+        avatarURL: "",
+        embeds: [embed]
+    })
 
-client.login(config.token)
-
-const fileComandi = fs.readdirSync('./commands').filter(file => file.endsWith('.js'))
-
-for (const file of fileComandi) {
-    const comando = require(`./commands/${file}`);
-    client.commands.set(comando.data.name, comando);
-} 
-
-client.on('ready', () => {
-    console.log(client.user.tag)
-    client.user.setActivity('/short', { type: 'LISTENING' });
-});
-
-client.on('interactionCreate', async (interaction) =>{
-    if(!interaction.isCommand()) return;
-
-    if (!client.commands.has(interaction.commandName)) return;
-    try {
-        await client.commands.get(interaction.commandName).execute(interaction)
-    } catch (error) {
-        console.error(error);
-        await interaction.reply({content: "<a:arrow:895720936312033281> **Something went wrong!**", ephemeral: true })
-    }
-    db.add("executed_cmd", 1)
+    res.render("report", {
+        success: true,
+        errors: false
+    })
 })

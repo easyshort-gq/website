@@ -1,22 +1,20 @@
 <%- include('head', { title: 'easyshort.gq' }) -%>
 
 <body>
-    <h1>URL Shortener</h1>
+    <h1 onclick="home()">URL Shortener</h1>
     <div>
-        <h2>Let's short your URL!</h2>
-        <h3>... first read our <a onclick="about()">Terms of Service</a></h3>
-        <form method="post" action="/createurl">
-        <input type="url" id="long" name="long" placeholder="Insert your long URL here..." autocomplete="off" required><br>
+        <h2>Report an URL</h2>
+        <h3>... that is agains our <a onclick="about()">Terms of Service</a></h3>
+        <form method="post" action="/reporturl">
+        <input type="url" id="url" name="url" placeholder="Insert the URL here..." autocomplete="off" required><br>
+        <textarea id="motivo" name="motivo" placeholder="Explain the motivation here..." autocomplete="off" required></textarea><br>
         <% if(success) { %>
-            <p style="color: green; margin-left: 2em;">Your URL was successfully created! <a href="<%= success[1] %>" target="__blank">easyshort.gq/<%= success[0] %></a></p>
+            <p style="color: green; margin-left: 2em;">The provided URL was successfully reported!</p>
         <% } %>
         <% if(errors) { %>
-            <p id="err" style="color: red; margin-left: 2em">Please provide a valid long URL!</p>
+            <p id="err" style="color: red; margin-left: 2em">Something went wrong, try again later.</p>
         <% } %>
-        <% if(notFound) { %>
-            <p id="err" style="color: red; margin-left: 2em">The URL you are looking for does not exist.</p>
-        <% } %>
-        <button type="submit">Shorten URL</button>
+        <button type="submit">Report URL</button>
         </form>
     </div>
     <footer>
@@ -29,14 +27,20 @@
     function about() {
         window.location.href = "/about"
     }
+    function home() {
+        window.open("/")
+    }
     function github() {
         window.open("https://github.com/ale-006", "__blank")
     }
     function report() {
-        window.location.href = "/report"
+        window.location.href = ""
     }
     function dbstat() {
         window.open("https://status.supabase.com/", "__blank")
+    }
+    function home() {
+        window.location.href = "/"
     }
     setTimeout(() => {
         document.getElementById("err").style.display = "none"
@@ -62,7 +66,6 @@ h3 {
 h1 {
     text-align: center;
     margin-bottom: 2em;
-    margin-top: 1em;
 }
 a, span {
     margin: 3px;
@@ -92,13 +95,24 @@ input {
     height: 70%;
     margin: 2em;
     margin-top: 0;
+    margin-bottom: 0.5em;
+    transition-duration: 0.4s;
+}
+textarea {
+    font-family: 'Roboto', sans-serif;
+    padding: 1em;
+    width: 88%;
+    border: 0.2em solid black;
+    border-radius: 10px;
+    margin: 2em;
+    margin-top: 0;
     margin-bottom: 0;
     transition-duration: 0.4s;
 }
-input:focus {
+input:focus, textarea:focus {
     background-color: lightgray;
 }
-input:hover {
+input:hover, textarea:hover {
     background-color: lightgray;
 }
 button {

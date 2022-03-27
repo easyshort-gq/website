@@ -43,6 +43,13 @@ app.get("/report", (req, res) => {
     })
 })
 
+app.get("/clicks", (req, res) => {
+    res.render("clicks", {
+        success: false,
+        errors: false
+    })
+})
+
 
 
 app.get("*", async (req, res) => {
@@ -83,6 +90,23 @@ app.post("/createurl", function(req, res) {
             notFound: false,
             success: [corto, lungo],
             errors: false
+        })
+    }
+})
+
+app.post("/getc", async (req, res) => {
+    let url = req.body.url
+    let data = await supabase.from("easyshort").select("code, clicks").eq("code", url)
+    if(data.data.length) {
+        res.render("clicks", {
+            success: data.data[0].clicks,
+            errors: false
+        })
+    }
+    else {
+        res.render("clicks", {
+            success: false,
+            errors: true
         })
     }
 })

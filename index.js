@@ -99,7 +99,7 @@ app.post("/getc", async (req, res) => {
     let data = await supabase.from("easyshort").select("code, clicks").eq("code", url)
     if(data.data.length) {
         res.render("clicks", {
-            success: data.data[0].clicks,
+            success: data.data[0].clicks + " clicks",
             errors: false
         })
     }

@@ -21,7 +21,7 @@
     </div>
     </center>
     <footer>
-        <p>&copy; <span id="data"></span> - <a onclick="github()">ale_006</a> | <a onclick="about()">About & Terms</a> | <a onclick="report()">Report Abuse</a> | <a onclick="dbstat()">Database Status</a></p>
+        <p>&copy; <span id="data"></span> - <a onclick="github()">ale_006</a> | <a onclick="about()">About & Terms</a> | <a onclick="cl()">Clicks Counter</a> | <a onclick="report()">Report Abuse</a> | <a onclick="dbstat()">Database Status</a></p>
     </footer>
 </body>
 <script>
@@ -40,6 +40,9 @@
     }
     function dbstat() {
         window.open("https://status.supabase.com/", "__blank")
+    }
+    function cl () {
+        window.location.href = "/clicks"
     }
     setTimeout(() => {
         document.getElementById("err").style.display = "none"
@@ -117,5 +120,14 @@ footer {
     left: 0;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+}
+@media screen and (max-width: 900px) {
+    h1 {
+        margin-bottom: 0;
+    }
+    div {
+        width: 20em;
+        margin-top: 0;
+    }
 }
 </style>

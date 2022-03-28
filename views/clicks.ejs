@@ -9,7 +9,7 @@
         <input type="text" id="url" name="url" placeholder="Insert the URL code here..." autocomplete="off" required>
         <p style="font-size: 0.8em; margin-top: 0; margin-left: 2em; margin-bottom: 0;">For example, if the URL is <span style="color: darkgray">easyshort.gq/abcdef</span>, you have to insert <span style="color: darkgray">abcdef</span>.</p><br>
         <% if(success) { %>
-            <p style="color: green; margin-left: 2em; margin-top: 0; margin-bottom: 0;">Your URL has <%= success %> clicks!</p>
+            <p style="color: green; margin-left: 2em; margin-top: 0; margin-bottom: 0;">Your URL has <%= success %>!</p>
         <% } %>
         <% if(errors) { %>
             <p id="err" style="color: red; margin-left: 2em; margin-top: 0; margin-bottom: 0">The provided URL does not exist.</p>
@@ -18,7 +18,7 @@
         </form>
     </div>
     <footer>
-        <p>&copy; <span id="data"></span> - <a onclick="github()">ale_006</a> | <a onclick="about()">About & Terms</a> | <a onclick="report()">Report Abuse</a> | <a onclick="dbstat()">Database Status</a></p>
+        <p>&copy; <span id="data"></span> - <a onclick="github()">ale_006</a> | <a onclick="about()">About & Terms</a> | <a onclick="cl()">Clicks Counter</a> | <a onclick="report()">Report Abuse</a> | <a onclick="dbstat()">Database Status</a></p>
         <p id="xy"></p>
     </footer>
 </body>
@@ -41,6 +41,9 @@
     }
     function home() {
         window.location.href = "/"
+    }
+    function cl () {
+        window.location.href = "/clicks"
     }
     setTimeout(() => {
         document.getElementById("err").style.display = "none"
@@ -137,5 +140,14 @@ footer {
     left: 0;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+}
+@media screen and (max-width: 900px) {
+    h1 {
+        margin-bottom: 0;
+    }
+    div {
+        width: 20em;
+        margin-top: 0;
+    }
 }
 </style>

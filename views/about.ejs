@@ -1,133 +1,20 @@
 <%- include('head', { title: 'easyshort.gq' }) -%>
 
-<body>
-    <center>
-    <h1 onclick="home()">URL Shortener</h1>
-    <div>
-        <h2>About us:</h2>
-        <p>easyshort.gq is a simple, free and easy to use URL shortener.</p>
-        <h2>Our pros:</h2>
-        <ul>
-            <li>No Ads</li>
-            <li>100% free</li>
-            <li>Easily shareable links</li>
-            <li>Made in Italy :-)</li>
-        </ul>
-        <h2>Terms of Service:</h2>
-        <ul>
-            <li>No scam, spam, porn or illegal links.</li>
-            <li>No links that share personal data (ex. telephone number)</li>
-        </ul>
-    </div>
-    </center>
-    <footer>
-        <p>&copy; <span id="data"></span> - <a onclick="github()">ale_006</a> | <a onclick="about()">About & Terms</a> | <a onclick="cl()">Clicks Counter</a> | <a onclick="report()">Report Abuse</a> | <a onclick="dbstat()">Database Status</a></p>
-    </footer>
+<section class="about">
+    <h1>About us:</h1>
+    <p>easyshort.gq is a simple, free and easy to use URL shortener.</p>
+    <h1>Our pros:</h1>
+    <ul>
+        <li>No ads</li>
+        <li>100% free</li>
+        <li>QR Code integration</li>
+        <li>Made in Italy :)</li>
+    </ul>
+    <h1>Terms of Service:</h1>
+    <ul>
+        <li>No scam, spam, porn or illegal links</li>
+        <li>No links that share personal data</li>
+    </ul>
+</section>
+<%- include("footer") -%>
 </body>
-<script>
-    document.getElementById("data").innerHTML = new Date().getFullYear()
-    function about() {
-        window.location.href = "/about"
-    }
-    function github() {
-        window.open("https://github.com/ale-006", "__blank")
-    }
-    function report() {
-        window.location.href = "/report"
-    }
-    function home() {
-        window.location.href = "/"
-    }
-    function dbstat() {
-        window.open("https://status.supabase.com/", "__blank")
-    }
-    function cl () {
-        window.location.href = "/clicks"
-    }
-    setTimeout(() => {
-        document.getElementById("err").style.display = "none"
-    }, 2000);
-</script>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: lightblue;
-    user-select: none;
-}
-h1 {
-    margin: 2em;
-    margin-top: 1em;
-}
-a, span {
-    margin: 3px;
-}
-a:hover {
-    margin: 0px;
-    background-color: gray;
-    border-radius: 3px;
-    padding: 3px;
-}
-div {
-    width: 40%;
-    height: 50%;
-    border-radius: 2em;
-    background-color: white;
-    text-align: left;
-    align-items: left;
-    padding: 2em;
-    position: absolute; top: 50%; left: 50%; transform:translate(-50%, -50%)
-}
-h2 {
-    margin-top: 0;
-}
-input {
-    padding: 1em;
-    width: 88%;
-    border: 0.2em solid black;
-    border-radius: 10px;
-    height: 70%;
-    margin: 2em;
-    margin-top: 0;
-    margin-bottom: 0;
-    transition-duration: 0.4s;
-}
-input:focus {
-    background-color: lightgray;
-}
-input:hover {
-    background-color: lightgray;
-}
-button {
-    margin: 2em;
-    margin-top: 1em;
-    margin-bottom: 0;
-    height: 3em;
-    width: 20%;
-    border: 0.2em solid black;
-    border-radius: 10px;
-    transition-duration: 0.4s;
-}
-button:hover {
-    background-color: lightgray;
-}
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: rgb(0, 162, 255);
-    text-align: center;
-    left: 0;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-}
-@media screen and (max-width: 900px) {
-    h1 {
-        margin-bottom: 0;
-    }
-    div {
-        width: 20em;
-        margin-top: 0;
-    }
-}
-</style>

@@ -1,0 +1,13 @@
+<%- include('head', { title: 'easyshort.gq' }) -%>
+
+<section class="shortened">
+    <center>
+    <h1>Your link has been shortened!</h1>
+    <p><a href="https://easyshort.gq/<%= code %>" target="__blank">https://easyshort.gq/<%= code %></a></p>
+    <br>
+    <h2>QR Code:</h2>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://easyshort.gq/<%= code %>/">
+    </center>
+</section>
+<%- include("footer") -%>
+</body>

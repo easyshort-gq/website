@@ -1,0 +1,191 @@
+/*
+    - CREATED BY ALE_006
+    - DO NOT STEAL THIS CSS FILE OR I'LL ARRIVE IN YOUR HOUSE <3 :)
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+::placeholder {
+    color: black;
+    z-index: 10;
+}
+
+/* NAVBAR */
+nav {  
+  margin-left: 0;
+}
+
+nav ul {  
+  list-style-type: none;
+  padding-left: 0;
+}
+
+nav li a { 
+  padding: 3px;
+  float: left;
+  font-size: 15px;
+  text-decoration: none;
+  margin-right: 1em;
+  color: black;
+}
+nav ul i {
+    margin-right: 0.3em;
+}
+
+nav h1 {
+    float: right;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 0.5em;
+}
+nav img {
+    float: right;
+    margin-right: 0.5em;
+    width: 2em;
+    margin-bottom: 0;
+}
+
+.menuResp {
+    display: none;
+}
+@media screen and (max-width: 650px) {
+    .menuResp {
+        display: unset;
+    }
+}
+
+/* FORM */
+form {
+    margin-top: 4em;
+}
+form input {
+    border-radius: 15px;
+    border: 2px solid blue;
+    padding: 0.5em;
+    padding-left: 1em;
+    outline: none;
+    width: 15em;
+    height: 2em;
+    background: none;
+    transition-duration: 0.4s;
+    color: black;
+    background-color: azure;
+}:hover {
+    border-color: white;
+}
+form button {
+    width: 8em;
+    height: 1.5em;
+    background: none;
+    border: 2px solid blue;
+    border-radius: 10px;
+    margin-top: 1em;
+    transition-duration: 0.4s;
+}:hover {
+    border-color: white;
+}
+form h1 {
+    font-size: 1.5em;
+}
+@media screen and (min-width: 500px) {
+    form input {
+        width: 25em;
+    }
+    form button {
+        height: 3em;
+    }
+}
+
+/* FOOTER */
+footer {
+    position: fixed;
+    bottom: 4em;
+    text-align: center;
+    background-color: #09f;
+    width: 100%;
+    left: 0;
+    box-shadow: 5px 5px 5px black;
+}
+
+/* BACKGROUND (skidded) */
+.bg {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+}
+  
+.bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:4s;
+}
+  
+.bg3 {
+    animation-duration:5s;
+}
+  
+@keyframes slide {
+    0% {
+      transform:translateX(-25%);
+    }
+    100% {
+      transform:translateX(25%);
+    }
+}
+
+/* SHORTED PAGE */
+.shortened {
+    margin-top: 4em;
+}
+.shortened h1 {
+    font-size: 1.5em;
+}
+.shortened img {
+    padding: 0.5em;
+    background-color: white;
+    border-radius: 0.5em;
+    box-shadow: 10px 10px 10px black;
+}
+
+/* ABOUT & TERMS PAGE */
+.about {
+    margin-top: 3em;
+    margin-left: 0.5em;
+}
+.about h1 {
+    font-size: 1.5em;
+    text-shadow: 3px 3px 3px white;
+}
+@media screen and (min-width: 500px) {
+    .about {
+        margin-left: 2em;
+    }
+}
+
+/* 404 */
+.notfound {
+    margin-left: 0.5em;
+}
+.notfound h1 {
+    font-size: 6em;
+    margin-bottom: 0;
+}
+.notfound h2 {
+    margin-top: 0;
+    font-size: 2.5em;
+}
+.notfound span {
+    color: white;
+}
+.notfound p {
+    font-size: 1.5em;
+}

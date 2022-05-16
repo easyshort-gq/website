@@ -2,9 +2,8 @@
 
 <center>
     <form action="/getc" method="post" autocomplete="off">
-        <h1>Get URL Stats</h1>
-        <p>Let's see how many times your link has been opened!</p>
-        <input type="text" name="url" id="url" placeholder="Insert your easyshort.gq URL here..." required><br>
+        <h1>Check your <br class="rss"> link clicks!</h1>
+        <input type="text" name="url" id="url" placeholder="Insert your short link here..." required>
         <button type="submit">Get stats</button>
         <% if(success) { %>
             <p>Your URL has <%= success %>!</p>
